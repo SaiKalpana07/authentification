@@ -1,0 +1,28 @@
+.nav-bar {
+  margin-left: 5%;
+  background-color: white;
+  color: black;
+  justify-content: flex-end;
+}
+
+.nav-items {
+  margin-right: 1rem;
+}
+
+.avatar {
+  width: 35px;
+  height: 35px;
+}
+
+.select-dropdown {
+  width: 177px;
+  height: 36px;
+}
+
+.notify,
+.notify-icon {
+  background-color: gray;
+  height: 35px;
+  min-width: 20px;
+  border-radius: 50%;
+}

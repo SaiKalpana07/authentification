@@ -1,0 +1,44 @@
+.header {
+    width: 1300px;
+    background-color: white;
+  }
+  
+  .drawer-header {
+    background-color: #0005a4;
+  }
+  
+  .side-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6rem;
+    background-color: #3f42a1;
+    color: white;
+  }
+  
+  .icon-circle {
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    background-color: white;
+    margin-right: -0.75rem;
+  }
+  
+  .icon-button {
+    background-color: white;
+  }
+  
+  .icon {
+    color: black;
+    margin-top: -0.4rem;
+    margin-left: -0.5rem;
+  }
+  
+  .dropdown-menu {
+      margin-left:1rem;
+  }
+  
+  .menu-item {
+      width:150px;
+      height:150px;
+  }
+  
