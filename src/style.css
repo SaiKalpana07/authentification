@@ -6,3 +6,12 @@
 h1 {
   text-align: center;
 }
+
+.row {
+  width: 100%;
+  float: left;
+}
+
+.header {
+  margin-top: 5%;
+}

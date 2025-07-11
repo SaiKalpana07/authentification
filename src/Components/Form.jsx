@@ -1,25 +1,22 @@
+import React, { useState } from "react";
+import "./Form.css";
+import "../../src/style.css";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormGroup from "@mui/material/FormGroup";
 import TextField from "@mui/material/TextField";
-import React, { useState } from "react";
 import CheckCircleRoundedIcon from "@mui/icons-material/CheckCircleRounded";
 import Box from "@mui/material/Box";
-
-import "./Form.css";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton";
 import Checkbox from "@mui/material/Checkbox";
-import Divider from "@mui/material/Divider";
 import RadioGroup from "@mui/material/RadioGroup";
 import Radio from "@mui/material/Radio";
-import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
-import InputLabel from "@mui/material/InputLabel";
+import Header from "./Header";
 
 function Form() {
-  const [toggleValue, setToggleValue] = useState("ldap");
   const [inputFieldError, setInputFieldError] = useState({
     authentificationName: {
       value: "",
@@ -61,19 +58,29 @@ function Form() {
       value: "",
       error: false,
     },
+    toggleButtonValue: {
+      value: "",
+      error: false,
+    },
   });
 
-  const handleChangeToggle = (event, newAlignment) => {
-    console.log("alignment", newAlignment, event);
-    setToggleValue(newAlignment);
+
+  const handleToggleClick = (e, propertyKey, value) => {
+
+    const final = {
+      ...inputFieldError,
+      [propertyKey]: {
+        value: value,
+        error: false,
+      },
+    };
+    setInputFieldError(final);
   };
 
   const handleTextfieldChange = (e, propertyKey) => {
-    console.log("prop", propertyKey);
     const value = e.target.value;
     let error;
 
-    console.log("e.target.validity.valid", e.target.validity.valid);
 
     if (e.target.validity.valid) {
       error = false;
@@ -89,13 +96,13 @@ function Form() {
       },
     };
 
-    console.log("final", final);
 
     setInputFieldError(final);
   };
 
   return (
     <>
+      <Header className="row header" inputFieldError={inputFieldError} />
       <form>
         <FormGroup>
           <TextField
@@ -105,7 +112,13 @@ function Form() {
             error={inputFieldError.authentificationName.error}
             variant="outlined"
             size="small"
-            sx={{ width: "50%" }}
+            sx={{
+              width: "50%",
+              "& .MuiInputLabel-outlined": {
+                color: "#3f42a1",
+                "& .MuiInputLabel-asterisk": { color: "red" },
+              },
+            }}
             onChange={(e) => handleTextfieldChange(e, "authentificationName")}
             InputLabelProps={{ shrink: true }}
             helperText={
@@ -122,29 +135,32 @@ function Form() {
             <label className="remote-lbl"> Remote</label>
             <ToggleButtonGroup
               color="primary"
-              value={toggleValue}
-              exclusive
-              onChange={handleChangeToggle}
               aria-label="Platform"
               className="toggle-btn-grp"
             >
               <ToggleButton
-                value="active-directory"
+                value="activeDirectory"
                 className={
-                  toggleValue === "active-directory"
+                  inputFieldError.toggleButtonValue.value === "activeDirectory"
                     ? "active-directory-btn p-5"
                     : "active-directory-btn-inactive p-5 "
                 }
                 sx={{ textTransform: "none" }}
+                onClick={(e) =>
+                  handleToggleClick(e, "toggleButtonValue", "activeDirectory")
+                }
               >
                 Active Directory
               </ToggleButton>
               <ToggleButton
                 value="ldap"
                 className={
-                  toggleValue === "ldap"
+                  inputFieldError.toggleButtonValue.value === "ldap"
                     ? "ldap-btn p-5"
                     : "ldap-btn-inactive p-5"
+                }
+                onClick={(e) =>
+                  handleToggleClick(e, "toggleButtonValue", "ldap")
                 }
               >
                 LDAP
@@ -153,10 +169,17 @@ function Form() {
           </Box>
           <Box className="text-field-checkbox">
             <TextField
+              required
               id="outlined-basic"
               label="Authentification Option"
               variant="outlined"
-              sx={{ width: "75%" }}
+              sx={{
+                width: "75%",
+                "& .MuiInputLabel-outlined": {
+                  color: "#3f42a1",
+                  "& .MuiInputLabel-asterisk": { color: "red" },
+                },
+              }}
               InputLabelProps={{ shrink: true }}
             />
             <span className="checkbox-control1">
@@ -174,10 +197,17 @@ function Form() {
             <hr></hr>
             <Box className="textfield-container-row-one">
               <TextField
+                required
                 label="Server name"
                 variant="outlined"
                 className="textfield-group mr-2"
                 size="small"
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                    "& .MuiInputLabel-asterisk": { color: "red" },
+                  },
+                }}
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.serverName.value}
@@ -191,6 +221,13 @@ function Form() {
               />
 
               <TextField
+                required
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                    "& .MuiInputLabel-asterisk": { color: "red" },
+                  },
+                }}
                 label="LDAP User"
                 variant="outlined"
                 className="textfield-group mr-2"
@@ -208,6 +245,13 @@ function Form() {
               />
 
               <TextField
+                required
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                    "& .MuiInputLabel-asterisk": { color: "red" },
+                  },
+                }}
                 label="Password"
                 variant="outlined"
                 className="textfield-group"
@@ -229,6 +273,13 @@ function Form() {
             </Box>
             <Box className="textfield-container-row-one">
               <TextField
+                required
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                    "& .MuiInputLabel-asterisk": { color: "red" },
+                  },
+                }}
                 label="Certificate"
                 variant="outlined"
                 className="certificate-textfield"
@@ -239,6 +290,13 @@ function Form() {
 
             <Box className="textfield-container-row-one">
               <TextField
+                required
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                    "& .MuiInputLabel-asterisk": { color: "red" },
+                  },
+                }}
                 label="Base DN"
                 variant="outlined"
                 className="textfield-group mr-2"
@@ -259,6 +317,11 @@ function Form() {
                 label="User Base DN"
                 variant="outlined"
                 className="textfield-group mr-2"
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                  },
+                }}
                 size="small"
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
@@ -272,6 +335,13 @@ function Form() {
                 }
               />
               <TextField
+                required
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                    "& .MuiInputLabel-asterisk": { color: "red" },
+                  },
+                }}
                 label="Bind User"
                 variant="outlined"
                 className="textfield-group"
@@ -291,6 +361,11 @@ function Form() {
             <Box className="textfield-container-row-one">
               <TextField
                 label="User Key"
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                  },
+                }}
                 variant="outlined"
                 className="textfield-group mr-2"
                 size="small"
@@ -311,6 +386,11 @@ function Form() {
                 variant="outlined"
                 className="textfield-group mr-2"
                 size="small"
+                sx={{
+                  "& .MuiInputLabel-outlined": {
+                    color: "#3f42a1",
+                  },
+                }}
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.groupDbMatch.value}
@@ -345,10 +425,14 @@ function Form() {
                 />
                 <TextField
                   select
+                  sx={{
+                    "& .MuiInputLabel-outlined": {
+                      color: "#3f42a1",
+                    },
+                  }}
                   className="user-selection-dropdown"
                   size="small"
                   label="User Group"
-                  required
                   InputLabelProps={{ shrink: true }}
                 >
                   <MenuItem value="User1">User1</MenuItem>
@@ -380,9 +464,21 @@ function Form() {
                   className="user-reference-radio-btn"
                 />
                 <Box className="selection-dropdown">
-                  <Select size="small" className="user-selection-dropdown">
-                    <MenuItem></MenuItem>
-                  </Select>
+                  <TextField
+                    select
+                    sx={{
+                      "& .MuiInputLabel-outlined": {
+                        color: "#3f42a1",
+                      },
+                    }}
+                    className="user-selection-dropdown"
+                    size="small"
+                    label="User Reference"
+                    InputLabelProps={{ shrink: true }}
+                  >
+                    <MenuItem value="User1">User1</MenuItem>
+                  </TextField>
+
                   <Tooltip
                     title="All user is allowed to connect"
                     placement="right"

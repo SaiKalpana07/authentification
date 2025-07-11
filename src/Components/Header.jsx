@@ -9,22 +9,36 @@ import Divider from "@mui/material/Divider";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "@mui/material/Link";
 import HomeIcon from "@mui/icons-material/Home";
+import axios from "axios";
 
-function Header() {
+function Header({ inputFieldError }) {
+  
+  const handleSaveClick = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        inputFieldError
+      );
+      console.log("Form submitted", response.data);
+    } catch (error) {
+      console.error("Error");
+    }
+  };
+
   return (
     <>
       <Box className="header-bar">
         <Box className="header-title">
           <Box className="header-items">
-          <ArrowBackIcon className="back-arrow-icon" />
-          <Typography
-            className="heading"
-            sx={{ textTransform: "uppercase", fontWeight: "bold" }}
-          >
-            Authentification
-          </Typography>
+            <ArrowBackIcon className="back-arrow-icon" />
+            <Typography
+              className="heading"
+              sx={{ textTransform: "uppercase", fontWeight: "bold" }}
+            >
+              Authentification
+            </Typography>
           </Box>
-          
 
           <Box className="bread-crumb-container">
             <Breadcrumbs separator="›" aria-label="breadcrumb">
@@ -72,6 +86,7 @@ function Header() {
                 textTransform: "none",
               }}
               className="save-btn"
+              onClick={handleSaveClick}
             >
               Save
             </Button>

@@ -35,6 +35,11 @@ export default function NavBar() {
               renderInput={(params) => (
                 <TextField
                   className="auto-complete-textbox"
+                  sx={{
+                    "& .MuiInputLabel-outlined": {
+                      color: "#3f42a1",
+                    },
+                  }}
                   {...params}
                   label="Search input"
                   InputLabelProps={{ shrink: true }}

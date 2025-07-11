@@ -14,7 +14,7 @@ function Settings() {
         </div>
         <div className="right-container">
           <div className="row navbar"><NavBar/></div>
-          <div className="row header"><Header/></div>
+          {/* <div className="row header"><Header/></div> */}
           <div className="row form"><Form /></div>
         </div>
       </div>
