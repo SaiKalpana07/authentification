@@ -39,6 +39,13 @@
   
   .menu-item {
       width:150px;
-      height:150px;
   }
   
+  .icon-clr {
+    color: white;
+  }
+
+  .active-menu {
+    background-color: white !important;
+    color: black;
+  }

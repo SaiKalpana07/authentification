@@ -3,37 +3,6 @@
   padding: 0;
 }
 
-.container {
-  /* background-color: aquamarine; */
-}
-
-.left-container {
-  width: 5%;
-  float: left;
-  background-color: antiquewhite;
-}
-
-.right-container {
-  width: 95%;
-  float: left;
-  /* background-color: blueviolet; */
-  margin-left:5%;
-}
-
-.row {
-  width: 100%;
-  float: left;
-}
-
-.navbar {
-  background-color: brown;
-}
-
-.header {
-  margin-top: 5%;
-}
-
-.form {
-margin: 16px;
-  /* background-color: cadetblue; */
+h1 {
+  text-align: center;
 }

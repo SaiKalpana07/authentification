@@ -5,24 +5,30 @@
   justify-content: flex-end;
 }
 
+.auto-complete-textbox {
+  font-size: 4px !important;
+}
+
 .nav-items {
-  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  gap:10px;
 }
 
 .avatar {
-  width: 35px;
-  height: 35px;
+  width: 30px !important;
+  height: 30px !important;
+  font-size: 16px !important;;
 }
 
 .select-dropdown {
-  width: 177px;
-  height: 36px;
+  width: 220px;
+  margin-right: 13px;
 }
 
 .notify,
 .notify-icon {
-  background-color: gray;
-  height: 35px;
-  min-width: 20px;
+  /* background-color: #f3f3f3; */
+  min-width: 40px;
   border-radius: 50%;
 }

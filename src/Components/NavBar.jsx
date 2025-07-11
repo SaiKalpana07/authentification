@@ -9,25 +9,42 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
+import Autocomplete from "@mui/material/Autocomplete";
+import TextField from "@mui/material/TextField";
 
 export default function NavBar() {
+  const top100Films = [
+    { title: "The Shawshank Redemption", year: 1994 },
+    { title: "The Godfather", year: 1972 },
+    { title: "The Godfather: Part II", year: 1974 },
+    { title: "The Dark Knight", year: 2008 },
+    { title: "12 Angry Men", year: 1957 },
+  ];
   return (
     <Box>
       <AppBar>
         <Toolbar className="nav-bar">
           <Box className="nav-items">
-            <Select className="select-dropdown">
-              <MenuItem>Add</MenuItem>
-            </Select>
-            <Button color="inherit">
-              <InfoOutlinedIcon />
-            </Button>
-            <Button color="inherit" className="notify">
-              <NotificationsIcon className="notify-icon" />
-            </Button>
-            <Button>
-              <Avatar className="avatar">H</Avatar>
-            </Button>
+            <Autocomplete
+              className="select-dropdown"
+              freeSolo
+              id="free-solo-2-demo"
+              size="small"
+              disableClearable
+              options={top100Films.map((option) => option.title)}
+              renderInput={(params) => (
+                <TextField
+                  className="auto-complete-textbox"
+                  {...params}
+                  label="Search input"
+                  InputLabelProps={{ shrink: true }}
+                />
+              )}
+            />
+
+            <InfoOutlinedIcon />
+            <NotificationsIcon className="notify-icon" />
+            <Avatar className="avatar">H</Avatar>
           </Box>
         </Toolbar>
       </AppBar>

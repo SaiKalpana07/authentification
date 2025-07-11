@@ -1,0 +1,34 @@
+* {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .left-container {
+    width: 5%;
+    float: left;
+    background-color: antiquewhite;
+  }
+  
+  .right-container {
+    width: 94%;
+    float: left;
+    margin-left: 6%;
+  }
+  
+  .row {
+    width: 100%;
+    float: left;
+  }
+  
+  .navbar {
+    background-color: brown;
+  }
+  
+  .header {
+    margin-top: 5%;
+  }
+  
+  .form {
+    margin-top: 16px;
+  }
+  

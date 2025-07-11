@@ -1,0 +1,174 @@
+.authentification-lbl {
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+.authentification-type {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+}
+
+.checked-icon {
+  background-color: white;
+  color: #3f42a1;
+  border-radius: 50%;
+  border-color: none;
+  height: 20px !important;
+}
+
+.remote-lbl {
+  font-size: 13px;
+  color: gray;
+  margin-left: 4px;
+}
+
+.radio-lbl {
+  margin-right: 5px;
+}
+
+.toggle-btn-grp {
+  margin-left: 32px;
+}
+
+.active-directory-btn {
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+  background-color: #3f42a1 !important;
+  color: white !important;
+  width: 115px !important;
+}
+
+.active-directory-btn-inactive {
+  border-top-left-radius: 20px !important;
+  border-bottom-left-radius: 20px !important;
+  color: #3f42a1 !important;
+  background-color: white !important;
+  width: 115px !important;
+}
+
+.ldap-btn {
+  border-top-right-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  background-color: #3f42a1 !important;
+  color: white !important;
+  width: 55px !important;
+}
+
+.ldap-btn-inactive {
+  border-top-right-radius: 20px !important;
+  border-bottom-right-radius: 20px !important;
+  color: #3f42a1 !important;
+  background-color: white !important;
+  width: 55px !important;
+}
+
+#outlined-basic {
+  width: 95%;
+  padding: 50px;
+}
+
+.text-field-checkbox {
+  margin-top: 16px;
+  position: relative;
+}
+
+.checkbox-control1 {
+  position: absolute;
+  top: 25%;
+  left: 1%;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.checkbox-control2 {
+  position: absolute;
+  top: 25%;
+  left: 35%;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.sample-text {
+  font-size: 12px;
+}
+
+.remote-configuration {
+  margin-top: 16px;
+  font-weight: 600;
+}
+
+hr {
+  border: none;
+  border-top: 1px dashed rgb(194, 188, 188);
+}
+
+.textfield-container-row-one {
+  margin-top: 16px;
+  width: 99%;
+}
+
+.certificate-textfield {
+  width: 100%;
+}
+
+.textfield-group {
+  width: 32%;
+}
+
+.mr-2 {
+  margin-right: 2% !important;
+}
+
+.user-control {
+  margin-top: 32px;
+}
+
+.radio-btn-group {
+  display: flex;
+  flex-direction: row !important;
+  gap: 12px;
+  margin-top: 16px;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.user-selection-dropdown {
+  width: 30%;
+}
+
+.info-icon {
+  color: #5a5b6a;
+}
+
+.p-5 {
+  padding: 0px !important;
+  font-size: 12px !important;
+}
+
+.p-2 {
+  padding: 2px !important;
+}
+
+.user-auto-creation-container {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 15px;
+}
+
+.user-reference-container {
+  margin-top: 16px;
+}
+
+.user-reference-radio-btn {
+  margin-left: 32px !important;
+}
+
+.selection-dropdown {
+  margin-top: 18px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
