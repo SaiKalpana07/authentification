@@ -16,6 +16,7 @@ import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
+import InputLabel from "@mui/material/InputLabel";
 
 function Form() {
   const [toggleValue, setToggleValue] = useState("ldap");
@@ -55,7 +56,11 @@ function Form() {
     password: {
       value: "",
       error: false,
-    }
+    },
+    userGroup: {
+      value: "",
+      error: false,
+    },
   });
 
   const handleChangeToggle = (event, newAlignment) => {
@@ -64,6 +69,7 @@ function Form() {
   };
 
   const handleTextfieldChange = (e, propertyKey) => {
+    console.log("prop", propertyKey);
     const value = e.target.value;
     let error;
 
@@ -201,15 +207,16 @@ function Form() {
                 }
               />
 
-
-
               <TextField
                 label="Password"
                 variant="outlined"
                 className="textfield-group"
                 size="small"
                 InputLabelProps={{ shrink: true }}
-                inputProps={{ pattern: "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@.#$!%*?&])[A-Za-z\d@.#$!%*?&].{8,15}$/" }}
+                inputProps={{
+                  pattern:
+                    "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@.#$!%*?&])[A-Za-zd@.#$!%*?&].{8,15}$/",
+                }}
                 value={inputFieldError.password.value}
                 onChange={(e) => handleTextfieldChange(e, "password")}
                 error={inputFieldError.password.error}
@@ -336,9 +343,17 @@ function Form() {
                   control={<Radio className="p-2" />}
                   label="No"
                 />
-                <Select size="small" className="user-selection-dropdown">
-                  <MenuItem></MenuItem>
-                </Select>
+                <TextField
+                  select
+                  className="user-selection-dropdown"
+                  size="small"
+                  label="User Group"
+                  required
+                  InputLabelProps={{ shrink: true }}
+                >
+                  <MenuItem value="User1">User1</MenuItem>
+                </TextField>
+
                 <Tooltip
                   title="All user is allowed to connect"
                   placement="right"
