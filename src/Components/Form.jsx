@@ -19,7 +19,6 @@ import Radio from "@mui/material/Radio";
 import MenuItem from "@mui/material/MenuItem";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
-import Header from "./Header";
 
 const Form = forwardRef((props, ref) => {
   const [inputFieldError, setInputFieldError] = useState({
@@ -79,6 +78,7 @@ const Form = forwardRef((props, ref) => {
         }
       });
       setInputFieldError(updatedData);
+      props.setData(inputFieldError);
     },
   }));
 
@@ -270,8 +270,7 @@ const Form = forwardRef((props, ref) => {
                 size="small"
                 InputLabelProps={{ shrink: true }}
                 inputProps={{
-                  pattern:
-                    "/^(?=.*[a-z])(?=.*[A-Z])(?=.*d)(?=.*[@.#$!%*?&])[A-Za-zd@.#$!%*?&].{8,15}$/",
+                  pattern: "^[a-zA-Z ]{2,50}$",
                 }}
                 value={inputFieldError.password.value}
                 onChange={(e) => handleTextfieldChange(e, "password")}

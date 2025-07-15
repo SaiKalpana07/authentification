@@ -8,6 +8,7 @@ import { useRef } from "react";
 
 function Settings() {
   const ref = useRef();
+  const [data, setData] = useState();
 
   const triggerFormValidation = () => {
     ref.current.formValidation();
@@ -24,10 +25,10 @@ function Settings() {
             <NavBar />
           </div>
           <div className="row header">
-            <Header triggerFormValidation={triggerFormValidation} />
+            <Header triggerFormValidation={triggerFormValidation} data={data} />
           </div>
           <div className="row form">
-            <Form ref={ref} />
+            <Form ref={ref} setData={setData} />
           </div>
         </div>
       </div>

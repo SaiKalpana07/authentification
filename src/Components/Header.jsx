@@ -8,20 +8,16 @@ import Divider from "@mui/material/Divider";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import Link from "@mui/material/Link";
 import HomeIcon from "@mui/icons-material/Home";
-import axios from "axios";
+import * as api from "../api";
 
-function Header({ triggerFormValidation }) {
+function Header({ triggerFormValidation, data }) {
   const handleSaveClick = () => {
-    triggerFormValidation(); 
-    // try {
-    //   const response = await axios.post(
-    //     "https://jsonplaceholder.typicode.com/posts",
-    //     inputFieldError
-    //   );
-    //   console.log("Form submitted", response.data);
-    // } catch (error) {
-    //   console.error("Error");
-    // }
+    triggerFormValidation();
+    let payload = JSON.parse(JSON.stringify(data));
+
+    api.saveData(payload).then((res) => {
+      console.log("res", res);
+    });
   };
 
   return (
