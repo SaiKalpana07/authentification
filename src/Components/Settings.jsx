@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import NavBar from "./NavBar";
 import Header from "./Header";
 import Form from "./Form";
-import './Settings.css'
+import "./Settings.css";
 import SideNav from "./SideNav";
+import { useRef } from "react";
 
 function Settings() {
+  const ref = useRef();
+
+  const triggerFormValidation = () => {
+    ref.current.formValidation();
+  };
+
   return (
     <>
       <div className="row container">
@@ -13,9 +20,15 @@ function Settings() {
           <SideNav />
         </div>
         <div className="right-container">
-          <div className="row navbar"><NavBar/></div>
-          {/* <div className="row header"><Header/></div> */}
-          <div className="row form"><Form /></div>
+          <div className="row navbar">
+            <NavBar />
+          </div>
+          <div className="row header">
+            <Header triggerFormValidation={triggerFormValidation} />
+          </div>
+          <div className="row form">
+            <Form ref={ref} />
+          </div>
         </div>
       </div>
     </>

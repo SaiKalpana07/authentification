@@ -1,9 +1,8 @@
-import AppBar from "@mui/material/AppBar";
+import React from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Breadcrumbs from "@mui/material/Breadcrumbs";
 import Button from "@mui/material/Button";
-import React from "react";
 import "./Header.css";
 import Divider from "@mui/material/Divider";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
@@ -11,19 +10,18 @@ import Link from "@mui/material/Link";
 import HomeIcon from "@mui/icons-material/Home";
 import axios from "axios";
 
-function Header({ inputFieldError }) {
-  
-  const handleSaveClick = async (e) => {
-    e.preventDefault();
-    try {
-      const response = await axios.post(
-        "https://jsonplaceholder.typicode.com/posts",
-        inputFieldError
-      );
-      console.log("Form submitted", response.data);
-    } catch (error) {
-      console.error("Error");
-    }
+function Header({ triggerFormValidation }) {
+  const handleSaveClick = () => {
+    triggerFormValidation(); 
+    // try {
+    //   const response = await axios.post(
+    //     "https://jsonplaceholder.typicode.com/posts",
+    //     inputFieldError
+    //   );
+    //   console.log("Form submitted", response.data);
+    // } catch (error) {
+    //   console.error("Error");
+    // }
   };
 
   return (

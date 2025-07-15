@@ -1,4 +1,9 @@
-import React, { useState } from "react";
+import React, {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useState,
+} from "react";
 import "./Form.css";
 import "../../src/style.css";
 import FormControlLabel from "@mui/material/FormControlLabel";
@@ -16,7 +21,7 @@ import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
 import Header from "./Header";
 
-function Form() {
+const Form = forwardRef((props, ref) => {
   const [inputFieldError, setInputFieldError] = useState({
     authentificationName: {
       value: "",
@@ -64,9 +69,20 @@ function Form() {
     },
   });
 
+  useImperativeHandle(ref, () => ({
+    formValidation: () => {
+      const updatedData = structuredClone(inputFieldError);
+      let propertyKeyValues = Object.keys(updatedData);
+      propertyKeyValues.map((prop) => {
+        if (updatedData[prop].value == "") {
+          updatedData[prop].error = true;
+        }
+      });
+      setInputFieldError(updatedData);
+    },
+  }));
 
   const handleToggleClick = (e, propertyKey, value) => {
-
     const final = {
       ...inputFieldError,
       [propertyKey]: {
@@ -80,7 +96,6 @@ function Form() {
   const handleTextfieldChange = (e, propertyKey) => {
     const value = e.target.value;
     let error;
-
 
     if (e.target.validity.valid) {
       error = false;
@@ -96,13 +111,11 @@ function Form() {
       },
     };
 
-
     setInputFieldError(final);
   };
 
   return (
     <>
-      <Header className="row header" inputFieldError={inputFieldError} />
       <form>
         <FormGroup>
           <TextField
@@ -128,7 +141,6 @@ function Form() {
             }
             inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
           />
-
           <label className="authentification-lbl">Authentification type</label>
           <Box className="authentification-type">
             <CheckCircleRoundedIcon className="checked-icon" />
@@ -493,5 +505,5 @@ function Form() {
       </form>
     </>
   );
-}
+});
 export default Form;

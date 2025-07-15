@@ -2,15 +2,16 @@ import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
-import Button from "@mui/material/Button";
 import "../Components/NavBar.css";
 import Avatar from "@mui/material/Avatar";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import ListItemIcon from "@mui/material/ListItemIcon";
+import ListItemText from "@mui/material/ListItemText";
 
 export default function NavBar() {
   const top100Films = [
@@ -25,6 +26,15 @@ export default function NavBar() {
       <AppBar>
         <Toolbar className="nav-bar">
           <Box className="nav-items">
+            {/* <TextField className="user-resource" select label="Resource" InputLabelProps={{shrink:true}}>
+            <MenuItem value="User1">
+              <ListItemIcon>
+                <Avatar/>
+              </ListItemIcon>
+              <ListItemText primary="User"/>
+              </MenuItem>
+            </TextField> */}
+              
             <Autocomplete
               className="select-dropdown"
               freeSolo

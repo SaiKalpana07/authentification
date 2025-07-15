@@ -111,7 +111,6 @@ export default function SideNav() {
   };
 
   const handleClickSideNav = (value) => {
-    console.log(value, "value");
     setActiveNav(value);
   };
 
@@ -133,7 +132,7 @@ export default function SideNav() {
         <Box className="side-nav">
           <List className="list-items">
             {["Dashboard"].map((text, index) => (
-              <ListItem disablePadding sx={{ display: "block" }}>
+              <ListItem key={index} disablePadding sx={{ display: "block" }}>
                 <ListItemButton
                   sx={[
                     {
