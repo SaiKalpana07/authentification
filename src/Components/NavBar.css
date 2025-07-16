@@ -26,11 +26,12 @@
   margin-right: 13px;
 }
 
-.notify-icon {
+.notify-icon,.info-icon {
   background-color: #ece7e7;
-  width: 30px !important;
-  height: 25px !important;
+  width: 38px !important;
+  height: 30px !important;
   border-radius: 50%;
+  padding:2px;
 }
 
 .user-resource {

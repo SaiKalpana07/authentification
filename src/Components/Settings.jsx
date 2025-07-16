@@ -14,6 +14,7 @@ function Settings() {
     ref.current.formValidation();
   };
 
+  console.log('data settings',data)
   return (
     <>
       <div className="row container">

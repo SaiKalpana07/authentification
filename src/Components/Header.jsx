@@ -10,14 +10,22 @@ import Link from "@mui/material/Link";
 import HomeIcon from "@mui/icons-material/Home";
 import * as api from "../api";
 
-function Header({ triggerFormValidation, data }) {
-  const handleSaveClick = () => {
-    triggerFormValidation();
-    let payload = JSON.parse(JSON.stringify(data));
+function Header({ triggerFormValidation, data }) {     console.log('data',data)
 
-    api.saveData(payload).then((res) => {
-      console.log("res", res);
-    });
+   const apiCall = () => {
+
+   }
+  const handleSaveClick = () => {
+    console.log("Before function call",data)
+    triggerFormValidation();
+    console.log("After function call",data)
+
+      let payload = JSON.parse(JSON.stringify(data));
+          api.saveData(data).then((res) => {
+            console.log("res", res);
+          });
+    
+    
   };
 
   return (

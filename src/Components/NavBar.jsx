@@ -57,7 +57,7 @@ export default function NavBar() {
               )}
             />
 
-            <InfoOutlinedIcon />
+            <InfoOutlinedIcon className="info-icon"/>
             <NotificationsIcon className="notify-icon" />
             <Avatar className="avatar">H</Avatar>
           </Box>

@@ -22,6 +22,7 @@ ReactDOM.createRoot(document.getElementById("app")).render(
       <SideNav/>
       <div>
         <Routes>
+          <Route path="/" element={<Home />}></Route>
           <Route path="/home" element={<Home />}></Route>
           <Route path="/analytics" element={<Analytics />}></Route>
           <Route path="/search" element={<Search />}></Route>

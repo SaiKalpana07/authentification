@@ -19,8 +19,11 @@ import Radio from "@mui/material/Radio";
 import MenuItem from "@mui/material/MenuItem";
 import InfoIcon from "@mui/icons-material/Info";
 import Tooltip from "@mui/material/Tooltip";
+import * as api from "../api"
+import { getUsers } from "../api";
+import { AUTHENTIFICATION_LBL, AUTHENTIFICATION_NAME, AUTHENTIFICATION_OPTION, BASE_DN_LBL, BIND_USER, CERTIFICATE, GROUP_DB_MATCH, LDAP, LDAP_USER_LBL, PASSWORD, PASSWORD_ERROR_MESSAGE, SERVER_NAME_LBL,SERVER_NAME, TEXTFIELD_ERROR_MESSAGE, TOGGLE_BUTTON_VALUE, TOOLTIP_TITLE, USER_BASE_DN_LBL, USER_GROUP_LBL, USER_KEY_LBL, USER_REFERENCE_LBL, LDAP_USER, PASSWORD_LBL, CERTIFICATE_LBL, BIND_USER_LBL, GROUP_DB_MATCH_LBL, BASE_DN, USER_BASE_DN, USER_KEY, ACTIVE_DIRECTORY } from "../constants";
 
-const Form = forwardRef((props, ref) => {
+const Form = forwardRef((props, ref) => {console.log('props',props.setData)
   const [inputFieldError, setInputFieldError] = useState({
     authentificationName: {
       value: "",
@@ -67,6 +70,8 @@ const Form = forwardRef((props, ref) => {
       error: false,
     },
   });
+console.log(getUsers().then((response) => {console.log(response,'check')}))
+  // console.log(getUsers().then((response) => {console.log(response.json())}))
 
   useImperativeHandle(ref, () => ({
     formValidation: () => {
@@ -120,7 +125,7 @@ const Form = forwardRef((props, ref) => {
         <FormGroup>
           <TextField
             required
-            label="Authentification Name"
+            label= {AUTHENTIFICATION_LBL}
             value={inputFieldError.authentificationName.value}
             error={inputFieldError.authentificationName.error}
             variant="outlined"
@@ -132,11 +137,11 @@ const Form = forwardRef((props, ref) => {
                 "& .MuiInputLabel-asterisk": { color: "red" },
               },
             }}
-            onChange={(e) => handleTextfieldChange(e, "authentificationName")}
+            onChange={(e) => handleTextfieldChange(e,AUTHENTIFICATION_NAME )}
             InputLabelProps={{ shrink: true }}
             helperText={
               inputFieldError.authentificationName.error
-                ? "Only letters and spaces allowed (2-50 characters)"
+                ? TEXTFIELD_ERROR_MESSAGE
                 : ""
             }
             inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
@@ -151,15 +156,15 @@ const Form = forwardRef((props, ref) => {
               className="toggle-btn-grp"
             >
               <ToggleButton
-                value="activeDirectory"
+                value={ACTIVE_DIRECTORY}
                 className={
-                  inputFieldError.toggleButtonValue.value === "activeDirectory"
+                  inputFieldError.toggleButtonValue.value === ACTIVE_DIRECTORY
                     ? "active-directory-btn p-5"
                     : "active-directory-btn-inactive p-5 "
                 }
                 sx={{ textTransform: "none" }}
                 onClick={(e) =>
-                  handleToggleClick(e, "toggleButtonValue", "activeDirectory")
+                  handleToggleClick(e, TOGGLE_BUTTON_VALUE, ACTIVE_DIRECTORY)
                 }
               >
                 Active Directory
@@ -167,12 +172,12 @@ const Form = forwardRef((props, ref) => {
               <ToggleButton
                 value="ldap"
                 className={
-                  inputFieldError.toggleButtonValue.value === "ldap"
+                  inputFieldError.toggleButtonValue.value === LDAP
                     ? "ldap-btn p-5"
                     : "ldap-btn-inactive p-5"
                 }
                 onClick={(e) =>
-                  handleToggleClick(e, "toggleButtonValue", "ldap")
+                  handleToggleClick(e, TOGGLE_BUTTON_VALUE, LDAP)
                 }
               >
                 LDAP
@@ -183,7 +188,7 @@ const Form = forwardRef((props, ref) => {
             <TextField
               required
               id="outlined-basic"
-              label="Authentification Option"
+              label={AUTHENTIFICATION_OPTION}
               variant="outlined"
               sx={{
                 width: "75%",
@@ -210,7 +215,7 @@ const Form = forwardRef((props, ref) => {
             <Box className="textfield-container-row-one">
               <TextField
                 required
-                label="Server name"
+                label= {SERVER_NAME_LBL}
                 variant="outlined"
                 className="textfield-group mr-2"
                 size="small"
@@ -223,11 +228,11 @@ const Form = forwardRef((props, ref) => {
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.serverName.value}
-                onChange={(e) => handleTextfieldChange(e, "serverName")}
+                onChange={(e) => handleTextfieldChange(e, SERVER_NAME )}
                 error={inputFieldError.serverName.error}
                 helperText={
                   inputFieldError.serverName.error
-                    ? "Only letters and spaces allowed (2-50 characters)"
+                    ? TEXTFIELD_ERROR_MESSAGE
                     : ""
                 }
               />
@@ -240,18 +245,18 @@ const Form = forwardRef((props, ref) => {
                     "& .MuiInputLabel-asterisk": { color: "red" },
                   },
                 }}
-                label="LDAP User"
+                label={LDAP_USER_LBL}
                 variant="outlined"
                 className="textfield-group mr-2"
                 size="small"
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.ldapUser.value}
-                onChange={(e) => handleTextfieldChange(e, "ldapUser")}
+                onChange={(e) => handleTextfieldChange(e, LDAP_USER )}
                 error={inputFieldError.ldapUser.error}
                 helperText={
                   inputFieldError.ldapUser.error
-                    ? "Only letters and spaces allowed (2-50 characters)"
+                    ? TEXTFIELD_ERROR_MESSAGE
                     : ""
                 }
               />
@@ -264,7 +269,7 @@ const Form = forwardRef((props, ref) => {
                     "& .MuiInputLabel-asterisk": { color: "red" },
                   },
                 }}
-                label="Password"
+                label={PASSWORD_LBL}
                 variant="outlined"
                 className="textfield-group"
                 size="small"
@@ -273,11 +278,11 @@ const Form = forwardRef((props, ref) => {
                   pattern: "^[a-zA-Z ]{2,50}$",
                 }}
                 value={inputFieldError.password.value}
-                onChange={(e) => handleTextfieldChange(e, "password")}
+                onChange={(e) => handleTextfieldChange(e,PASSWORD )}
                 error={inputFieldError.password.error}
                 helperText={
                   inputFieldError.password.error
-                    ? "Your password must be at least 8 characters long, contain at least one number and have a mixture of uppercase and lowercase letters."
+                    ? PASSWORD_ERROR_MESSAGE
                     : ""
                 }
               />
@@ -291,7 +296,7 @@ const Form = forwardRef((props, ref) => {
                     "& .MuiInputLabel-asterisk": { color: "red" },
                   },
                 }}
-                label="Certificate"
+                label={CERTIFICATE_LBL}
                 variant="outlined"
                 className="certificate-textfield"
                 size="small"
@@ -308,24 +313,24 @@ const Form = forwardRef((props, ref) => {
                     "& .MuiInputLabel-asterisk": { color: "red" },
                   },
                 }}
-                label="Base DN"
+                label={BASE_DN_LBL}
                 variant="outlined"
                 className="textfield-group mr-2"
                 size="small"
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.baseDN.value}
-                onChange={(e) => handleTextfieldChange(e, "baseDN")}
+                onChange={(e) => handleTextfieldChange(e, BASE_DN)}
                 error={inputFieldError.baseDN.error}
                 helperText={
                   inputFieldError.baseDN.error
-                    ? "Only letters and spaces allowed (2-50 characters)"
+                    ? TEXTFIELD_ERROR_MESSAGE
                     : ""
                 }
               />
 
               <TextField
-                label="User Base DN"
+                label={USER_BASE_DN_LBL}
                 variant="outlined"
                 className="textfield-group mr-2"
                 sx={{
@@ -337,11 +342,11 @@ const Form = forwardRef((props, ref) => {
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.userBaseDN.value}
-                onChange={(e) => handleTextfieldChange(e, "userBaseDN")}
+                onChange={(e) => handleTextfieldChange(e, USER_BASE_DN)}
                 error={inputFieldError.userBaseDN.error}
                 helperText={
                   inputFieldError.userBaseDN.error
-                    ? "Only letters and spaces allowed (2-50 characters)"
+                    ? TEXTFIELD_ERROR_MESSAGE
                     : ""
                 }
               />
@@ -353,25 +358,25 @@ const Form = forwardRef((props, ref) => {
                     "& .MuiInputLabel-asterisk": { color: "red" },
                   },
                 }}
-                label="Bind User"
+                label={BIND_USER_LBL}
                 variant="outlined"
                 className="textfield-group"
                 size="small"
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.bindUser.value}
-                onChange={(e) => handleTextfieldChange(e, "bindUser")}
+                onChange={(e) => handleTextfieldChange(e, BIND_USER)}
                 error={inputFieldError.bindUser.error}
                 helperText={
                   inputFieldError.bindUser.error
-                    ? "Only letters and spaces allowed (2-50 characters)"
+                    ? TEXTFIELD_ERROR_MESSAGE
                     : ""
                 }
               />
             </Box>
             <Box className="textfield-container-row-one">
               <TextField
-                label="User Key"
+                label={USER_KEY_LBL}
                 sx={{
                   "& .MuiInputLabel-outlined": {
                     color: "#3f42a1",
@@ -383,17 +388,17 @@ const Form = forwardRef((props, ref) => {
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.userKey.value}
-                onChange={(e) => handleTextfieldChange(e, "userKey")}
+                onChange={(e) => handleTextfieldChange(e,USER_KEY )}
                 error={inputFieldError.userKey.error}
                 helperText={
                   inputFieldError.userKey.error
-                    ? "Only letters and spaces allowed (2-50 characters)"
+                    ? TEXTFIELD_ERROR_MESSAGE
                     : ""
                 }
               />
 
               <TextField
-                label="Group DB Match"
+                label= {GROUP_DB_MATCH_LBL}
                 variant="outlined"
                 className="textfield-group mr-2"
                 size="small"
@@ -405,11 +410,11 @@ const Form = forwardRef((props, ref) => {
                 InputLabelProps={{ shrink: true }}
                 inputProps={{ pattern: "^[a-zA-Z ]{2,50}$" }}
                 value={inputFieldError.groupDbMatch.value}
-                onChange={(e) => handleTextfieldChange(e, "groupDbMatch")}
+                onChange={(e) => handleTextfieldChange(e,GROUP_DB_MATCH )}
                 error={inputFieldError.groupDbMatch.error}
                 helperText={
                   inputFieldError.groupDbMatch.error
-                    ? "Only letters and spaces allowed (2-50 characters)"
+                    ? TEXTFIELD_ERROR_MESSAGE
                     : ""
                 }
               />
@@ -443,7 +448,7 @@ const Form = forwardRef((props, ref) => {
                   }}
                   className="user-selection-dropdown"
                   size="small"
-                  label="User Group"
+                  label= {USER_GROUP_LBL}
                   InputLabelProps={{ shrink: true }}
                 >
                   <MenuItem value="User1">User1</MenuItem>
@@ -484,14 +489,14 @@ const Form = forwardRef((props, ref) => {
                     }}
                     className="user-selection-dropdown"
                     size="small"
-                    label="User Reference"
+                    label= {USER_REFERENCE_LBL}
                     InputLabelProps={{ shrink: true }}
                   >
                     <MenuItem value="User1">User1</MenuItem>
                   </TextField>
 
                   <Tooltip
-                    title="All user is allowed to connect"
+                    title= {TOOLTIP_TITLE}
                     placement="right"
                   >
                     <InfoIcon className="info-icon" />
